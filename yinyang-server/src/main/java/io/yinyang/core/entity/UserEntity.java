@@ -26,10 +26,6 @@ public class UserEntity implements Entity, UserDetails {
 	@ElementCollection(fetch = FetchType.EAGER)
 	private Set<Role> roles = new HashSet<Role>();
 
-	@ManyToOne
-	@JoinColumn(name = "user_type_id", referencedColumnName = "id")
-	private UserTypeEntity userType;
-
 	@Column(name = "activity_flag")
 	private boolean activityFlag;
 
@@ -41,11 +37,10 @@ public class UserEntity implements Entity, UserDetails {
 		this.password = passwordHash;
 	}
 
-	public UserEntity(String name, String password, Set<Role> roles, UserTypeEntity userType, boolean activityFlag) {
+	public UserEntity(String name, String password, Set<Role> roles, boolean activityFlag) {
 		this.name = name;
 		this.password = password;
 		this.roles = roles;
-		this.userType = userType;
 		this.activityFlag = activityFlag;
 	}
 
@@ -95,14 +90,6 @@ public class UserEntity implements Entity, UserDetails {
 
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		return this.getRoles();
-	}
-
-	public UserTypeEntity getUserType() {
-		return userType;
-	}
-
-	public void setUserType(UserTypeEntity userTypeEntity) {
-		this.userType = userTypeEntity;
 	}
 
 	public String getUsername() {
