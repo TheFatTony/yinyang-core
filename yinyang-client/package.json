@@ -7,8 +7,7 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e",
-    "yarn": "/usr/local/lib/node_modules/yarn/bin/yarn"
+    "e2e": "ng e2e"
   },
   "private": true,
   "dependencies": {
@@ -46,6 +45,7 @@
     "@angular/language-service": "~6.1.1",
     "@angular-devkit/architect": "~0.7.2",
     "@angular-devkit/build-angular": "~0.7.2",
+    "@angular-devkit/build-ng-packagr": "~0.7.2",
     "@angular-devkit/core": "~0.7.2",
     "@angular-devkit/schematics": "~0.7.2",
     "@types/jasmine": "~2.8.6",
@@ -60,6 +60,7 @@
     "karma-coverage-istanbul-reporter": "~2.0.0",
     "karma-jasmine": "~1.1.1",
     "karma-jasmine-html-reporter": "^0.2.2",
+    "ng-packagr": "^3.0.0",
     "protractor": "~5.4.0",
     "ts-node": "~7.0.0",
     "tslint": "~5.11.0",
