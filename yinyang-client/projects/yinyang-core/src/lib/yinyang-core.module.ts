@@ -118,7 +118,7 @@ import {HttpClientModule} from "@angular/common/http";
     RequiredDirective,
     MobileDirective,
     EmailDirective,
-    PasswordDirective
+    PasswordDirective,
   ],
   imports: [
     BrowserModule,
@@ -215,15 +215,9 @@ import {HttpClientModule} from "@angular/common/http";
     NumberInputComponent,
     ControlErrorsComponent,
 
-    MaskedInputComponent,
-    DateTimeInputComponent,
-    ComboBoxComponent,
-    NumberInputComponent,
     MatchToDirective,
-
     MultipleOfDirective,
     GreaterThanDirective,
-    ControlErrorsComponent,
     RequiredDirective,
     MobileDirective,
     EmailDirective,
