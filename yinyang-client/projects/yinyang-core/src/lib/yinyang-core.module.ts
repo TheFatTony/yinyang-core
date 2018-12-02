@@ -118,7 +118,7 @@ import {HttpClientModule} from "@angular/common/http";
     RequiredDirective,
     MobileDirective,
     EmailDirective,
-    PasswordDirective
+    PasswordDirective,
   ],
   imports: [
     BrowserModule,
