@@ -1,5 +1,5 @@
-import {Attribute, ContentChild, Directive, forwardRef} from '@angular/core';
-import {AbstractControl, NG_VALIDATORS, NgModel, ValidationErrors, Validator, Validators} from "@angular/forms";
+import {Directive, forwardRef} from '@angular/core';
+import {AbstractControl, NG_VALIDATORS, ValidationErrors, Validator, Validators} from "@angular/forms";
 
 @Directive({
   selector: '[mchMobile][formControlName],[mchMobile][formControl],[mchMobile][ngModel]',

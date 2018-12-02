@@ -1,4 +1,4 @@
-import { MultipleOfDirective } from './multiple-of.directive';
+import {MultipleOfDirective} from './multiple-of.directive';
 
 describe('MultipleOfDirective', () => {
   it('should create an instance', () => {

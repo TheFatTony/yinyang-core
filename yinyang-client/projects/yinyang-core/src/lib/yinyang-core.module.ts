@@ -130,6 +130,7 @@ import {HttpClientModule} from "@angular/common/http";
   ],
   providers: [AlertService],
   exports: [
+
     AlertComponent,
     LoadingComponent,
 
@@ -215,15 +216,9 @@ import {HttpClientModule} from "@angular/common/http";
     NumberInputComponent,
     ControlErrorsComponent,
 
-    MaskedInputComponent,
-    DateTimeInputComponent,
-    ComboBoxComponent,
-    NumberInputComponent,
     MatchToDirective,
-
     MultipleOfDirective,
     GreaterThanDirective,
-    ControlErrorsComponent,
     RequiredDirective,
     MobileDirective,
     EmailDirective,

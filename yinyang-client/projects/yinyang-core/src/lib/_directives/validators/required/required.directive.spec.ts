@@ -1,4 +1,4 @@
-import { RequiredDirective } from './required.directive';
+import {RequiredDirective} from './required.directive';
 
 describe('RequiredDirective', () => {
   it('should create an instance', () => {

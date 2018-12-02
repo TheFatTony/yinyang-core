@@ -1,4 +1,4 @@
-import { PasswordDirective } from './password.directive';
+import {PasswordDirective} from './password.directive';
 
 describe('PasswordDirective', () => {
   it('should create an instance', () => {

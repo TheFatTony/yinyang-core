@@ -13,8 +13,6 @@ export * from './lib/_services/alert.service';
 
 export * from './lib/yinyang-core.module';
 
-export * from './lib/_directives/validators/email/email.directive';
-
 // export {
 //   MaskedInputComponent,
 //   DateTimeInputComponent,

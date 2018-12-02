@@ -1,4 +1,4 @@
-import { MobileDirective } from './mobile.directive';
+import {MobileDirective} from './mobile.directive';
 
 describe('MobileDirective', () => {
   it('should create an instance', () => {

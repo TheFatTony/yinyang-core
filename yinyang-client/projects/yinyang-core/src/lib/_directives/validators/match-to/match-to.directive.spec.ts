@@ -1,4 +1,4 @@
-import { MatchToDirective } from './match-to.directive';
+import {MatchToDirective} from './match-to.directive';
 
 describe('MatchToDirective', () => {
   it('should create an instance', () => {

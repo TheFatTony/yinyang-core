@@ -1,5 +1,5 @@
-import {Attribute, ContentChild, Directive, forwardRef} from '@angular/core';
-import {AbstractControl, NG_VALIDATORS, NgModel, ValidationErrors, Validator} from "@angular/forms";
+import {Directive, forwardRef} from '@angular/core';
+import {AbstractControl, NG_VALIDATORS, ValidationErrors, Validator} from "@angular/forms";
 
 @Directive({
   selector: '[mchRequired][formControlName],[mchRequired][formControl],[mchRequired][ngModel]',

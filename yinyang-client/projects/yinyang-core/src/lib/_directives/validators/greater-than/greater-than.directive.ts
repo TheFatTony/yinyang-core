@@ -1,5 +1,5 @@
 import {Attribute, Directive} from "@angular/core";
-import {NG_VALIDATORS, Validator, ValidationErrors, AbstractControl} from '@angular/forms';
+import {AbstractControl, NG_VALIDATORS, ValidationErrors, Validator} from '@angular/forms';
 
 @Directive({
   selector: '[mchGreaterThan][formControlName],[mchGreaterThan][formControl],[mchGreaterThan][ngModel]',

@@ -1,4 +1,4 @@
-import { GreaterThanDirective } from './greater-than.directive';
+import {GreaterThanDirective} from './greater-than.directive';
 
 describe('GreaterThanDirective', () => {
   it('should create an instance', () => {
