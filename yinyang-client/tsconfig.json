@@ -9,20 +9,21 @@
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
+    "importHelpers": true,
     "target": "es5",
     "typeRoots": [
       "node_modules/@types"
     ],
     "lib": [
-      "es2017",
+      "es2018",
       "dom"
     ],
     "paths": {
-      "yinyang": [
-        "dist/yinyang"
+      "yinyang-core": [
+        "dist/yinyang-core"
       ],
-      "yinyang/*": [
-        "dist/yinyang/*"
+      "yinyang-core/*": [
+        "dist/yinyang-core/*"
       ]
     }
   }

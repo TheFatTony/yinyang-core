@@ -7,7 +7,7 @@
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
-      "prefix": "app",
+      "prefix": "cc",
       "schematics": {},
       "architect": {
         "build": {
@@ -23,9 +23,14 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "node_modules/bootstrap/dist/css/bootstrap.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/jquery/dist/jquery.js",
+              "node_modules/popper.js/dist/umd/popper.js",
+              "node_modules/bootstrap/dist/js/bootstrap.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -43,7 +48,14 @@
               "aot": true,
               "extractLicenses": true,
               "vendorChunk": false,
-              "buildOptimizer": true
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
             }
           }
         },
@@ -98,6 +110,7 @@
     "yinyang-client-e2e": {
       "root": "e2e/",
       "projectType": "application",
+      "prefix": "",
       "architect": {
         "e2e": {
           "builder": "@angular-devkit/build-angular:protractor",
@@ -122,38 +135,33 @@
         }
       }
     },
-    "yinyang": {
-      "root": "projects/yinyang",
-      "sourceRoot": "projects/yinyang/src",
+    "yinyang-core": {
+      "root": "projects/yinyang-core",
+      "sourceRoot": "projects/yinyang-core/src",
       "projectType": "library",
       "prefix": "yy",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",
           "options": {
-            "tsConfig": "projects/yinyang/tsconfig.lib.json",
-            "project": "projects/yinyang/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "project": "projects/yinyang/ng-package.prod.json"
-            }
+            "tsConfig": "projects/yinyang-core/tsconfig.lib.json",
+            "project": "projects/yinyang-core/ng-package.json"
           }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "projects/yinyang/src/test.ts",
-            "tsConfig": "projects/yinyang/tsconfig.spec.json",
-            "karmaConfig": "projects/yinyang/karma.conf.js"
+            "main": "projects/yinyang-core/src/test.ts",
+            "tsConfig": "projects/yinyang-core/tsconfig.spec.json",
+            "karmaConfig": "projects/yinyang-core/karma.conf.js"
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "projects/yinyang/tsconfig.lib.json",
-              "projects/yinyang/tsconfig.spec.json"
+              "projects/yinyang-core/tsconfig.lib.json",
+              "projects/yinyang-core/tsconfig.spec.json"
             ],
             "exclude": [
               "**/node_modules/**"
