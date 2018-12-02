@@ -127,7 +127,11 @@ import {HttpClientModule} from "@angular/common/http";
     ReactiveFormsModule,
     HttpClientModule,
     FormsModule,
-
+  ],
+  providers: [AlertService],
+  exports: [
+    AlertComponent,
+    LoadingComponent,
 
     BarGaugeModule,
     BulletChartModule,
@@ -199,14 +203,17 @@ import {HttpClientModule} from "@angular/common/http";
     TreeModule,
     ValidatorModule,
     DropDownListModule,
-    WindowModule
+    WindowModule,
 
-  ],
-  providers: [AlertService],
-  exports: [
-    AlertComponent,
-    LoadingComponent,
 
+    ButtonComponent,
+    TextInputComponent,
+    DropDownListComponent,
+    MaskedInputComponent,
+    DateTimeInputComponent,
+    ComboBoxComponent,
+    NumberInputComponent,
+    ControlErrorsComponent,
 
     MaskedInputComponent,
     DateTimeInputComponent,
