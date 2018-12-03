@@ -7,6 +7,9 @@ export * from './lib/_directives/loading/loading.component';
 
 export * from './lib/_services/loading.service';
 
+export * from './lib/_helpers/error.interceptor';
+export * from './lib/_helpers/jwt.interceptor';
+
 export * from './lib/_directives/alert/alert.component';
 export * from './lib/_services/alert.service';
 
