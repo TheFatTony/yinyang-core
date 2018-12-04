@@ -20,6 +20,6 @@ export class GreaterThanDirective implements Validator {
     if (v > this.greaterThan)
       return null;
 
-    return {"mchGreaterThan": `Value should be greater than ${this.greaterThan}`};
+    return {mchGreaterThan: `Value should be greater than ${this.greaterThan}`};
   }
 }
