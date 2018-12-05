@@ -11,7 +11,7 @@ export const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: any = {
 
 @Component({
   selector: 'mchInput',
-  template: '<input class="g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 rounded g-py-15 g-px-15" type="text" [(ngModel)]="ngValue">' +
+  template: '<input [attr.type]="type" class="g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 rounded g-py-15 g-px-15" type="text" [(ngModel)]="ngValue">' +
     '<mchErrors *ngIf="showErrors" [component]="myModel"></mchErrors>',
   providers: [CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR]
 })
@@ -20,6 +20,7 @@ export class TextInputComponent extends jqxInputComponent {
   @ContentChild(NgModel) myModel: NgModel;
 
   @Input() showErrors: boolean = true;
+  @Input() type: string = 'text';
 
   constructor(containerElement: ElementRef) {
     super(containerElement);
