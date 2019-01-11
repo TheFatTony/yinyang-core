@@ -11,7 +11,7 @@ import javax.persistence.*;
 
 @javax.persistence.Entity
 @Table(name = "reset_password_token")
-public class ResetPasswordTokenEntity extends AbstractPersistable<Long> {
+public class ResetPasswordTokenEntity extends YAbstractPersistable<Long> {
 
     @Getter
     @Setter

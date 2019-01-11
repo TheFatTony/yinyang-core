@@ -1,14 +1,15 @@
 package com.yinyang.core.server.domain;
 
 import lombok.Getter;
-import org.springframework.data.jpa.domain.AbstractPersistable;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import java.util.Date;
 
 @javax.persistence.Entity
 @Table(name = "access_token")
-public class AccessTokenEntity extends AbstractPersistable<Long> {
+public class AccessTokenEntity extends YAbstractPersistable<Long> {
 
     @Getter
     @Column

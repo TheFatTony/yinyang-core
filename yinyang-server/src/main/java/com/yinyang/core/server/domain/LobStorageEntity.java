@@ -10,7 +10,7 @@ import javax.persistence.*;
 
 @javax.persistence.Entity
 @Table(name = "lob_storage")
-public class LobStorageEntity extends AbstractPersistable<Long> {
+public class LobStorageEntity extends YAbstractPersistable<Long> {
 
     @Getter
     @Setter

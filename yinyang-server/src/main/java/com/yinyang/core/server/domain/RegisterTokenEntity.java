@@ -14,7 +14,7 @@ import javax.validation.constraints.Size;
 
 @javax.persistence.Entity
 @Table(name = "register_token")
-public class RegisterTokenEntity extends AbstractPersistable<Long> {
+public class RegisterTokenEntity extends YAbstractPersistable<Long> {
 
     @Getter
     @Setter

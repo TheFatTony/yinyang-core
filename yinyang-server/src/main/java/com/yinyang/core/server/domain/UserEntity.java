@@ -16,7 +16,7 @@ import java.util.Set;
 
 @javax.persistence.Entity(name = "user")
 @Table(name = "user")
-public class UserEntity extends AbstractPersistable<Long> implements UserDetails {
+public class UserEntity extends YAbstractPersistable<Long> implements UserDetails {
 
     @Getter
     @Setter

@@ -11,7 +11,7 @@ import java.sql.Timestamp;
 
 @javax.persistence.Entity
 @Table(name = "mail_queue")
-public class MailQueueEntity extends AbstractPersistable<Long> {
+public class MailQueueEntity extends YAbstractPersistable<Long> {
 
     @Getter
     @Setter
