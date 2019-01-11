@@ -1,20 +1,14 @@
 package com.yinyang.core.server.domain;
 
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import org.springframework.data.jpa.domain.AbstractPersistable;
 
 import javax.persistence.*;
 import java.util.Date;
 
-@EqualsAndHashCode
 @javax.persistence.Entity
 @Table(name = "access_token")
-public class AccessTokenEntity implements Entity {
-
-    @Getter
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class AccessTokenEntity extends AbstractPersistable<Long> {
 
     @Getter
     @Column

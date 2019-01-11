@@ -4,6 +4,7 @@ import com.yinyang.core.server.domain.enums.Role;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.data.jpa.domain.AbstractPersistable;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -13,16 +14,9 @@ import java.util.HashSet;
 import java.util.Set;
 
 
-@EqualsAndHashCode
 @javax.persistence.Entity(name = "user")
 @Table(name = "user")
-public class UserEntity implements Entity, UserDetails {
-
-    @Getter
-    @Setter
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class UserEntity extends AbstractPersistable<Long> implements UserDetails {
 
     @Getter
     @Setter

@@ -1,24 +1,17 @@
 package com.yinyang.core.server.domain;
 
 
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.data.jpa.domain.AbstractPersistable;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
 
 
-@EqualsAndHashCode
 @javax.persistence.Entity
 @Table(name = "mail_queue")
-public class MailQueueEntity implements Entity {
-
-    @Getter
-    @Setter
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class MailQueueEntity extends AbstractPersistable<Long> {
 
     @Getter
     @Setter

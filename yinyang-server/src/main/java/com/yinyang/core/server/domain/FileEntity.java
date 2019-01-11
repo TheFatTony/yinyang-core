@@ -1,23 +1,16 @@
 package com.yinyang.core.server.domain;
 
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.data.jpa.domain.AbstractPersistable;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Table;
 
 
-@EqualsAndHashCode
 @javax.persistence.Entity
 @Table(name = "files")
-public class FileEntity implements Entity {
-
-
-    @Getter
-    @Setter
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class FileEntity extends AbstractPersistable<Long> {
 
     @Getter
     @Setter

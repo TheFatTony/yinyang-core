@@ -1,22 +1,16 @@
 package com.yinyang.core.server.domain;
 
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.data.jpa.domain.AbstractPersistable;
 
 import javax.persistence.*;
 
 
-@EqualsAndHashCode
 @javax.persistence.Entity
 @Table(name = "user_type")
-public class UserTypeEntity implements Entity {
+public class UserTypeEntity extends AbstractPersistable<Long> {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Getter
-    @Setter
-    private Long id;
 
     @Column(name = "type_name")
     @Getter
