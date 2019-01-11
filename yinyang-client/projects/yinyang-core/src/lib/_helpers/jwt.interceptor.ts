@@ -3,7 +3,7 @@ import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpResponse} from
 import {Observable} from 'rxjs';
 import {tap} from "rxjs/operators";
 import {LoadingService} from "../_services/loading.service";
-import {AlertService} from "../_services";
+import {AlertService} from "../_services/alert.service";
 
 @Injectable()
 export class JwtInterceptor implements HttpInterceptor {
