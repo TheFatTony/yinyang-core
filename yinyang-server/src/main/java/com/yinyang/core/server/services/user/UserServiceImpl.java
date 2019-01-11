@@ -61,7 +61,7 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    @Value("${malevich.client.url}")
+    @Value("${yinyang.client.url}")
     private String clientUrl;
 
     protected UserServiceImpl() {
