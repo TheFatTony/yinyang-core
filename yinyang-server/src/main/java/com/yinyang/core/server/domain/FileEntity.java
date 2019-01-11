@@ -10,7 +10,7 @@ import javax.persistence.Table;
 
 @javax.persistence.Entity
 @Table(name = "files")
-public class FileEntity extends AbstractPersistable<Long> {
+public class FileEntity extends YAbstractPersistable<Long> {
 
     @Getter
     @Setter

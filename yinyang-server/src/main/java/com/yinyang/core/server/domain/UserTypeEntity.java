@@ -9,7 +9,7 @@ import javax.persistence.*;
 
 @javax.persistence.Entity
 @Table(name = "user_type")
-public class UserTypeEntity extends AbstractPersistable<Long> {
+public class UserTypeEntity extends YAbstractPersistable<Long> {
 
 
     @Column(name = "type_name")
