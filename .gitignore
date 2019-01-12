@@ -13,6 +13,8 @@
 *.ips
 .idea/
 
+package-lock.json
+
 log.roo
 
 # Eclipse
