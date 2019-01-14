@@ -2,6 +2,7 @@ package com.yinyang.core.server.domain;
 
 import lombok.Getter;
 import lombok.Setter;
+import net.minidev.json.annotate.JsonIgnore;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -26,7 +27,6 @@ public class UserEntity extends YAbstractPersistable<Long> implements UserDetail
     private String password;
 
     @Getter
-    @Setter
     @ElementCollection(fetch = FetchType.EAGER)
     private Set<SimpleGrantedAuthority> roles = new HashSet<>();
 

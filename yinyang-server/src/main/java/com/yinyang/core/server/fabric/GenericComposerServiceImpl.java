@@ -16,15 +16,15 @@ import org.springframework.web.client.RestTemplate;
 public abstract class GenericComposerServiceImpl<T> implements GenericComposerService<T> {
 
     @Value("${yinyang.composer.url}")
-    private String composerUrl;
+    protected String composerUrl;
 
     @Autowired
-    private RestTemplate restTemplate;
+    protected RestTemplate restTemplate;
 
     @Autowired
-    private HttpHeaders fabricHeaders;
+    protected HttpHeaders fabricHeaders;
 
-    private String endpoint;
+    protected String endpoint;
 
     protected GenericComposerServiceImpl(String endpoint) {
         setEndpoint(endpoint);
