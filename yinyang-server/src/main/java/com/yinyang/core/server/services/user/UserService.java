@@ -12,6 +12,8 @@ public interface UserService extends UserDetailsService {
 
     List<UserEntity> findAll();
 
+    UserEntity getCurrent();
+
     UserEntity save(UserEntity userEntity);
 
     UserEntity findByName(String name);
