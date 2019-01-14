@@ -165,8 +165,7 @@ public class UserServiceImpl implements UserService {
     @Transactional
     public UserEntity changePassword(String oldPassword, String newPassword) {
 
-        UserDto userDto = authService.getUser();
-        UserEntity userEntity = findByName(userDto.getName());
+        UserEntity userEntity = authService.getUserEntity();
 
         if (!bCryptPasswordEncoder.matches(oldPassword, userEntity.getPassword()))
             throw new InvalidOldPasswordException();

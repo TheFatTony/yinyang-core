@@ -44,18 +44,25 @@ public class AuthServiceImpl implements AuthService {
 
     @Override
     @Transactional
-    public UserDto getUser() {
+    public UserEntity getUserEntity() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         Object principal = authentication.getPrincipal();
-        UserDetails userDetails = null;
+        UserEntity userDetails = null;
         try {
-            userDetails = (UserDetails) principal;
+            userDetails = (UserEntity) principal;
         } catch (ClassCastException e) {
             return null;
         }
-        return new UserDto(userDetails.getUsername(), this.createRoleMap(userDetails));
+        return userDetails;
     }
 
+
+    @Override
+    @Transactional
+    public UserDto getUserDto() {
+        UserEntity userDetails = getUserEntity();
+        return new UserDto(userDetails.getUsername(), this.createRoleMap(userDetails));
+    }
     @Override
     public AccessTokenDto authenticate(LoginFormDto loginFormDto) {
         UsernamePasswordAuthenticationToken authenticationToken =
