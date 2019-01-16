@@ -49,4 +49,6 @@ public abstract class GenericComposerServiceImpl<T> implements GenericComposerSe
     public void setEndpoint(String endpoint) {
         this.endpoint = endpoint;
     }
+
+
 }
