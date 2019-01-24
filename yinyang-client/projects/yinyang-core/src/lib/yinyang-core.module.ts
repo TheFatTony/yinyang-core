@@ -95,6 +95,7 @@ import {TreeGridModule} from "./_modules/treegrid.module";
 import {ValidatorModule} from "./_modules/validator.module";
 import {WindowModule} from "./_modules/window.module";
 import {DropDownListModule} from "./_modules/dropdownlist.module";
+import {TextAreaComponent} from "./components/text-area.component";
 
 @NgModule({
   declarations: [
@@ -108,6 +109,7 @@ import {DropDownListModule} from "./_modules/dropdownlist.module";
     DateTimeInputComponent,
     ComboBoxComponent,
     NumberInputComponent,
+    TextAreaComponent,
     ControlErrorsComponent,
 
     MatchToDirective,
@@ -292,6 +294,7 @@ import {DropDownListModule} from "./_modules/dropdownlist.module";
     DateTimeInputComponent,
     ComboBoxComponent,
     NumberInputComponent,
+    TextAreaComponent,
     ControlErrorsComponent
   ]
 })
