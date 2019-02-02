@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
 
 import {NgxLoadingModule} from 'ngx-loading';
 
@@ -96,6 +96,7 @@ import {ValidatorModule} from "./_modules/validator.module";
 import {WindowModule} from "./_modules/window.module";
 import {DropDownListModule} from "./_modules/dropdownlist.module";
 import {TextAreaComponent} from "./components/text-area.component";
+import {PatternDirective} from './_directives/validators/pattern/pattern.directive';
 
 @NgModule({
   declarations: [
@@ -118,7 +119,8 @@ import {TextAreaComponent} from "./components/text-area.component";
     RequiredDirective,
     MobileDirective,
     EmailDirective,
-    PasswordDirective
+    PasswordDirective,
+    PatternDirective
   ],
   imports: [
     BarGaugeModule,
@@ -278,7 +280,6 @@ import {TextAreaComponent} from "./components/text-area.component";
     WindowModule,
 
 
-
     MatchToDirective,
     MultipleOfDirective,
     GreaterThanDirective,
@@ -286,6 +287,7 @@ import {TextAreaComponent} from "./components/text-area.component";
     MobileDirective,
     EmailDirective,
     PasswordDirective,
+    PatternDirective,
 
     ButtonComponent,
     TextInputComponent,
@@ -298,4 +300,5 @@ import {TextAreaComponent} from "./components/text-area.component";
     ControlErrorsComponent
   ]
 })
-export class YinyangCoreModule { }
+export class YinyangCoreModule {
+}
