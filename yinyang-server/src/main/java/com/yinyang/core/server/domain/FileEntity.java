@@ -37,5 +37,10 @@ public class FileEntity extends YAbstractPersistable<Long> {
     @Column(name = "file_size")
     private Long fileSize;
 
+    @Getter
+    @Setter
+    @Column(name = "user_id")
+    private UserEntity user;
+
 
 }
