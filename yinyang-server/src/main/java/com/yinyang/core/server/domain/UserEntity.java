@@ -2,9 +2,7 @@ package com.yinyang.core.server.domain;
 
 import lombok.Getter;
 import lombok.Setter;
-import net.minidev.json.annotate.JsonIgnore;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
@@ -27,8 +25,14 @@ public class UserEntity extends YAbstractPersistable<Long> implements UserDetail
     private String password;
 
     @Getter
-    @ElementCollection(fetch = FetchType.EAGER)
-    private Set<SimpleGrantedAuthority> roles = new HashSet<>();
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "user_roles",
+            joinColumns = @JoinColumn(
+                    name = "user_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(
+                    name = "roles_id", referencedColumnName = "id"))
+    private Set<Role> roles = new HashSet<>();
 
     @Getter
     @Setter
@@ -43,7 +47,7 @@ public class UserEntity extends YAbstractPersistable<Long> implements UserDetail
         this.password = passwordHash;
     }
 
-    public UserEntity(String name, String password, Set<SimpleGrantedAuthority> roles, boolean activityFlag) {
+    public UserEntity(String name, String password, Set<Role> roles, boolean activityFlag) {
         this.name = name;
         this.password = password;
         this.roles = roles;
