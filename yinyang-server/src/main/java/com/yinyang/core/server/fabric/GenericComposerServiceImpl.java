@@ -37,8 +37,7 @@ public abstract class GenericComposerServiceImpl<T> implements GenericComposerSe
             ResponseEntity<String> res = restTemplate.exchange(composerUrl + "/" + endpoint, HttpMethod.POST, requestBody, String.class);
         } catch (RestClientException e) {
             String errorResponse = ((HttpStatusCodeException) e).getResponseBodyAsString();
-            log.trace(errorResponse);
-            throw e;
+            throw new RuntimeException(errorResponse);
         }
     }
 
