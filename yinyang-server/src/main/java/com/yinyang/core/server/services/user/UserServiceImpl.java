@@ -76,6 +76,7 @@ public class UserServiceImpl implements UserService {
         return ud;
     }
 
+    @Override
     @Transactional
     public UserEntity findUserByAccessToken(String accessTokenString) {
         AccessTokenEntity accessTokenEntity = this.accessTokenService.findByToken(accessTokenString);
