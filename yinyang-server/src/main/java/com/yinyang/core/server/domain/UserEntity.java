@@ -1,5 +1,6 @@
 package com.yinyang.core.server.domain;
 
+import com.yinyang.core.server.core.validation.ValidPassword;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
@@ -26,6 +27,7 @@ public class UserEntity extends YAbstractPersistable<Long> implements UserDetail
     @Setter
     @Column(name = "password")
     @NotNull
+    @ValidPassword
     private String password;
 
     @Getter
