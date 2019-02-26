@@ -27,7 +27,6 @@ public class UserEntity extends YAbstractPersistable<Long> implements UserDetail
     @Setter
     @Column(name = "password")
     @NotNull
-    @ValidPassword
     private String password;
 
     @Getter
