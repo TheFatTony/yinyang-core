@@ -30,7 +30,7 @@ public class UserEntity extends YAbstractPersistable<Long> implements UserDetail
     private String password;
 
     @Getter
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.DETACH)
     @JoinTable(
             name = "user_roles",
             joinColumns = @JoinColumn(
