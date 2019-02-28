@@ -139,7 +139,7 @@ public class UserServiceImpl implements UserService {
         entity = resetPasswordTokenService.save(entity);
 
         VelocityContext context = new VelocityContext();
-        context.put("link", clientUrl + "/#/user/password/reset?token=" + entity.getToken());
+        context.put("link", clientUrl + "/#/auth/reset?token=" + entity.getToken());
         context.put("email", user.getUsername());
 
         StringWriter stringWriter = new StringWriter();
