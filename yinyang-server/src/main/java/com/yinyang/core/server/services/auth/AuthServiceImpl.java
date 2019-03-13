@@ -4,6 +4,7 @@ package com.yinyang.core.server.services.auth;
 import com.yinyang.core.server.core.security.JWTUtil;
 import com.yinyang.core.server.domain.AccessTokenEntity;
 import com.yinyang.core.server.domain.UserEntity;
+import com.yinyang.core.server.repositories.accesstoken.AccessTokenDao;
 import com.yinyang.core.server.transfer.AccessTokenDto;
 import com.yinyang.core.server.transfer.LoginFormDto;
 import com.yinyang.core.server.transfer.UserDto;
@@ -27,6 +28,9 @@ import java.util.List;
 public class AuthServiceImpl implements AuthService {
 
     @Autowired
+    private AccessTokenDao accessTokenDao;
+
+    @Autowired
     private JWTUtil jwtUtil;
 
     @Autowired
@@ -36,27 +40,38 @@ public class AuthServiceImpl implements AuthService {
     }
 
 
+
+    @Transactional
     public AccessTokenEntity createAccessToken(UserEntity user) {
         AccessTokenEntity accessTokenEntity = new AccessTokenEntity(user, jwtUtil.generateToken(user.getUsername()));
-//        accessTokenDao.save(accessTokenEntity);
+        accessTokenDao.save(accessTokenEntity);
         return accessTokenEntity;
     }
 
     @Override
     @Transactional
-    public UserDto getUser() {
+    public UserEntity getUserEntity() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         Object principal = authentication.getPrincipal();
-        UserDetails userDetails = null;
+        UserEntity userDetails = null;
         try {
-            userDetails = (UserDetails) principal;
+            userDetails = (UserEntity) principal;
         } catch (ClassCastException e) {
             return null;
         }
+        return userDetails;
+    }
+
+
+    @Override
+    @Transactional
+    public UserDto getUserDto() {
+        UserEntity userDetails = getUserEntity();
         return new UserDto(userDetails.getUsername(), this.createRoleMap(userDetails));
     }
 
     @Override
+    @Transactional
     public AccessTokenDto authenticate(LoginFormDto loginFormDto) {
         UsernamePasswordAuthenticationToken authenticationToken =
                 new UsernamePasswordAuthenticationToken(loginFormDto.getUsername(), loginFormDto.getPassword());

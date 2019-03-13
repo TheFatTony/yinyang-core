@@ -5,6 +5,7 @@ import lombok.Setter;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
 import javax.persistence.Column;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 
@@ -36,6 +37,11 @@ public class FileEntity extends YAbstractPersistable<Long> {
     @Setter
     @Column(name = "file_size")
     private Long fileSize;
+
+    @Getter
+    @Setter
+    @ManyToOne
+    private UserEntity user;
 
 
 }

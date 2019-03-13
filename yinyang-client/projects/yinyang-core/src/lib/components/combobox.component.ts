@@ -24,12 +24,38 @@ export class ComboBoxComponent extends jqxComboBoxComponent {
   @ContentChild(NgModel) ngModel: NgModel;
 
   @Input('auto-select') attrAutoSelect: boolean = true;
-  @Input('objectSource') attrObjectSource: any[];
   @Input('valueEqualFunc') attrValueEqualFunc: (a: any, b: any) => boolean = deepEquals;
   @Input('displayFunc') attrDisplayFunc: (item: any) => string = (item: any) => item.toString();
   @Input('valueFunc') attrValueFunc: (item: any) => any = (item: any) => item;
 
-  constructor(containerElement: ElementRef) {
+  @Input('objectSource')
+  set attrObjectSource(currentValue: any[]) {
+    if (!currentValue)
+      return;
+
+    this.objectSource = currentValue;
+
+    this.source(
+      currentValue.map(i => ({
+          title: this.attrDisplayFunc(i),
+          value: this.attrValueFunc(i)
+        })
+      )
+    );
+    this.displayMember('title');
+    this.valueMember('value');
+
+    this.selectWrittenValue(this.writtenValue, currentValue);
+  }
+
+  get attrObjectSource() {
+    return this.objectSource;
+  }
+
+  private writtenValue: any;
+  private objectSource: any[];
+
+  constructor(private containerElement: ElementRef) {
     super(containerElement);
     this.attrWidth = '100%';
     this.attrHeight = 48;
@@ -37,59 +63,24 @@ export class ComboBoxComponent extends jqxComboBoxComponent {
 
 
   ngAfterViewInit(): void {
-    this.ngModel.valueChanges.subscribe(i => this.updateSelection(i));
-
     super.ngAfterViewInit();
+    this.selectWrittenValue(this.writtenValue, this.attrObjectSource);
   }
 
-  private updateSelection(value: any) {
-    // console.log(value);
-    // console.log(this.ngModel.value);
-    if (!this.attrAutoSelect || !this.attrSource || !value)
-      return;
-
-    if (this.getSelectedItem() && this.attrValueEqualFunc(this.getSelectedItem().value, value))
-      return;
-
-    let selectIndex = this.attrSource.findIndex(i => this.attrValueEqualFunc(i.value, value));
-    this.selectedIndex(selectIndex);
+  writeValue(value: any): void {
+    super.writeValue(value);
+    this.writtenValue = value;
+    this.selectWrittenValue(value, this.attrObjectSource);
   }
 
+  private selectWrittenValue(value: any, source: any[]) {
+    if (!this.attrAutoSelect || !value || !source)
+      return;
 
-  ngOnChanges(changes: SimpleChanges): boolean {
+    const index = source.findIndex(v => this.attrValueEqualFunc(v, value));
 
-    if (changes['attrObjectSource']) {
-      let currentValue: any[] = changes['attrObjectSource'].currentValue;
-
-      if (currentValue) {
-        this.attrSource =
-          currentValue.map(i => ({
-              title: this.attrDisplayFunc(i),
-              value: this.attrValueFunc(i)
-            })
-          );
-        this.attrDisplayMember = 'title';
-        this.attrValueMember = 'value';
-      }
+    if (index >= 0) {
+      this.selectIndex(index);
     }
-
-    return super.ngOnChanges(changes);
-  }
-
-  registerOnChange(fn: any): void {
-
-    let newFn = (x: any) => {
-      // do not update truthy to falsy
-      if(this.ngModel.value && !x)
-        return;
-
-      // do not fire event if value not changed
-      if(this.attrValueEqualFunc(this.ngModel.value, x))
-        return;
-
-      fn(x);
-    };
-
-    super.registerOnChange(newFn);
   }
 }

@@ -13,5 +13,8 @@ if [ ! -e $CONTAINER_ALREADY_STARTED ]; then
     setsid sh -c 'composer-rest-server -c admin@'${BN_NAME}' -n "never" & composer-playground --port 9090'
 else
     echo "-- Not first container startup --"
+    ./startFabric.sh
+    composer network install --card PeerAdmin@hlfv1 --archiveFile ../${BN_NAME}.bna
+    composer network start --networkName ${BN_NAME} --networkVersion 0.0.1 --networkAdmin admin --networkAdminEnrollSecret adminpw --card PeerAdmin@hlfv1 --file networkadmin.card
     setsid sh -c 'composer-rest-server -c admin@'${BN_NAME}' -n "never" & composer-playground --port 9090'
 fi

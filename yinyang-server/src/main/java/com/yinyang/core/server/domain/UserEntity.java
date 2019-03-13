@@ -1,12 +1,14 @@
 package com.yinyang.core.server.domain;
 
+import com.yinyang.core.server.core.validation.ValidPassword;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -19,16 +21,23 @@ public class UserEntity extends YAbstractPersistable<Long> implements UserDetail
     @Getter
     @Setter
     @Column(name = "name")
+    @Email
     private String name;
 
     @Setter
     @Column(name = "password")
+    @NotNull
     private String password;
 
     @Getter
-    @Setter
-    @ElementCollection(fetch = FetchType.EAGER)
-    private Set<SimpleGrantedAuthority> roles = new HashSet<>();
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.DETACH)
+    @JoinTable(
+            name = "user_roles",
+            joinColumns = @JoinColumn(
+                    name = "user_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(
+                    name = "roles_id", referencedColumnName = "id"))
+    private Set<Role> roles = new HashSet<>();
 
     @Getter
     @Setter
@@ -43,7 +52,7 @@ public class UserEntity extends YAbstractPersistable<Long> implements UserDetail
         this.password = passwordHash;
     }
 
-    public UserEntity(String name, String password, Set<SimpleGrantedAuthority> roles, boolean activityFlag) {
+    public UserEntity(String name, String password, Set<Role> roles, boolean activityFlag) {
         this.name = name;
         this.password = password;
         this.roles = roles;

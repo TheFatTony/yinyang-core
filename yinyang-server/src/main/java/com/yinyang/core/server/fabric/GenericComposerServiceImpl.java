@@ -16,15 +16,15 @@ import org.springframework.web.client.RestTemplate;
 public abstract class GenericComposerServiceImpl<T> implements GenericComposerService<T> {
 
     @Value("${yinyang.composer.url}")
-    private String composerUrl;
+    protected String composerUrl;
 
     @Autowired
-    private RestTemplate restTemplate;
+    protected RestTemplate restTemplate;
 
     @Autowired
-    private HttpHeaders fabricHeaders;
+    protected HttpHeaders fabricHeaders;
 
-    private String endpoint;
+    protected String endpoint;
 
     protected GenericComposerServiceImpl(String endpoint) {
         setEndpoint(endpoint);
@@ -37,8 +37,11 @@ public abstract class GenericComposerServiceImpl<T> implements GenericComposerSe
             ResponseEntity<String> res = restTemplate.exchange(composerUrl + "/" + endpoint, HttpMethod.POST, requestBody, String.class);
         } catch (RestClientException e) {
             String errorResponse = ((HttpStatusCodeException) e).getResponseBodyAsString();
-            log.trace(errorResponse);
-            throw e;
+            String prettyError = errorResponse.substring(errorResponse.indexOf("!#{") + 3, errorResponse.indexOf("}#!"));
+            if (prettyError == null)
+                throw new RuntimeException(errorResponse);
+            else
+                throw new RuntimeException(prettyError);
         }
     }
 
@@ -49,4 +52,6 @@ public abstract class GenericComposerServiceImpl<T> implements GenericComposerSe
     public void setEndpoint(String endpoint) {
         this.endpoint = endpoint;
     }
+
+
 }

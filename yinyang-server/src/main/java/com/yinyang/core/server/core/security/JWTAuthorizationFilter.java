@@ -1,6 +1,7 @@
 package com.yinyang.core.server.core.security;
 
 
+import com.yinyang.core.server.services.user.UserService;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -18,12 +19,12 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
 
     private JWTUtil jwtUtil;
 
-    private UserDetailsService userDetailsService;
+    private UserService userDetailsService;
 
     public JWTAuthorizationFilter(AuthenticationManager authenticationManager, JWTUtil jwtUtil, UserDetailsService userDetailsService) {
         super(authenticationManager);
         this.jwtUtil = jwtUtil;
-        this.userDetailsService = userDetailsService;
+        this.userDetailsService = (UserService) userDetailsService;
     }
 
     @Override
@@ -31,10 +32,17 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
                                     HttpServletResponse response,
                                     FilterChain chain) throws IOException, ServletException {
         String header = request.getHeader("Authorization");
+
+
         if (header != null && header.startsWith("Bearer ")) {
-            UsernamePasswordAuthenticationToken auth = getAuthentication(header.substring(7));
-            if (auth != null) {
-                SecurityContextHolder.getContext().setAuthentication(auth);
+            String accessToken = header.substring(7);
+            if (null != accessToken) {
+                UserDetails user = this.userDetailsService.findUserByAccessToken(accessToken);
+                if (null != user) {
+                    UsernamePasswordAuthenticationToken authentication =
+                            new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
+                    SecurityContextHolder.getContext().setAuthentication(authentication);
+                }
             }
         }
         chain.doFilter(request, response);

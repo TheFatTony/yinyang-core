@@ -76,6 +76,7 @@ public class UserServiceImpl implements UserService {
         return ud;
     }
 
+    @Override
     @Transactional
     public UserEntity findUserByAccessToken(String accessTokenString) {
         AccessTokenEntity accessTokenEntity = this.accessTokenService.findByToken(accessTokenString);
@@ -138,7 +139,7 @@ public class UserServiceImpl implements UserService {
         entity = resetPasswordTokenService.save(entity);
 
         VelocityContext context = new VelocityContext();
-        context.put("link", clientUrl + "/#/user/password/reset?token=" + entity.getToken());
+        context.put("link", clientUrl + "/#/auth/reset?token=" + entity.getToken());
         context.put("email", user.getUsername());
 
         StringWriter stringWriter = new StringWriter();
@@ -165,8 +166,7 @@ public class UserServiceImpl implements UserService {
     @Transactional
     public UserEntity changePassword(String oldPassword, String newPassword) {
 
-        UserDto userDto = authService.getUser();
-        UserEntity userEntity = findByName(userDto.getName());
+        UserEntity userEntity = authService.getUserEntity();
 
         if (!bCryptPasswordEncoder.matches(oldPassword, userEntity.getPassword()))
             throw new InvalidOldPasswordException();
