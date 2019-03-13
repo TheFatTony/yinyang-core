@@ -37,11 +37,11 @@ public abstract class GenericComposerServiceImpl<T> implements GenericComposerSe
             ResponseEntity<String> res = restTemplate.exchange(composerUrl + "/" + endpoint, HttpMethod.POST, requestBody, String.class);
         } catch (RestClientException e) {
             String errorResponse = ((HttpStatusCodeException) e).getResponseBodyAsString();
-            String prettyError = errorResponse.substring(errorResponse.indexOf("!#{") + 3, errorResponse.indexOf("}#!"));
-            if (prettyError == null)
-                throw new RuntimeException(errorResponse);
-            else
+            if (errorResponse.indexOf("!#{") != -1) {
+                String prettyError = errorResponse.substring(errorResponse.indexOf("!#{") + 3, errorResponse.indexOf("}#!"));
                 throw new RuntimeException(prettyError);
+            } else
+                throw new RuntimeException(errorResponse);
         }
     }
 
