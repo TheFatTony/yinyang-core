@@ -2,9 +2,9 @@ package com.yinyang.core.server.services.user;
 
 import com.yinyang.core.server.domain.ResetPasswordTokenEntity;
 import com.yinyang.core.server.domain.UserEntity;
+import com.yinyang.core.server.transfer.AccessTokenDto;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -25,7 +25,7 @@ public interface UserService extends UserDetailsService {
 
     ResetPasswordTokenEntity reset(String lang, String userName);
 
-    UserEntity setNewPassword(String token, String password);
+    AccessTokenDto setNewPassword(String token, String password);
 
     UserEntity changePassword(String oldPassword, String newPassword);
 }

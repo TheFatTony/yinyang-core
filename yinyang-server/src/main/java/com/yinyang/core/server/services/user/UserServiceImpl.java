@@ -11,7 +11,8 @@ import com.yinyang.core.server.services.accesstoken.AccessTokenService;
 import com.yinyang.core.server.services.auth.AuthService;
 import com.yinyang.core.server.services.mailqueue.MailQueueService;
 import com.yinyang.core.server.services.resetpasswordtoken.ResetPasswordTokenService;
-import com.yinyang.core.server.transfer.UserDto;
+import com.yinyang.core.server.transfer.AccessTokenDto;
+import com.yinyang.core.server.transfer.LoginFormDto;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.VelocityEngine;
@@ -151,7 +152,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
-    public UserEntity setNewPassword(String token, String password) {
+    public AccessTokenDto setNewPassword(String token, String password) {
         ResetPasswordTokenEntity tokenEntity = resetPasswordTokenService.findByToken(token).get();
 
         UserEntity userEntity = tokenEntity.getUser();
@@ -159,7 +160,11 @@ public class UserServiceImpl implements UserService {
         userEntity = save(userEntity);
         resetPasswordTokenService.delete(tokenEntity);
 
-        return userEntity;
+        LoginFormDto login = new LoginFormDto();
+        login.setUsername(userEntity.getUsername());
+        login.setPassword(password);
+
+        return authService.authenticate(login);
     }
 
     @Override
